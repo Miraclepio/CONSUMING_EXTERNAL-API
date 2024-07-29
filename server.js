@@ -18,7 +18,7 @@ mongoose.connect(DB).then(()=>{
 }).catch((err)=>{
     console.log("error connecting to database: ", err.massage);
 });
-app.all('*',(res)=>{
+app.all('*',(req,res)=>{
     return res.status(200).send('welcome to my homepage')
 })
 
