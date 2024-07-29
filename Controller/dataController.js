@@ -56,6 +56,7 @@ exports.allData = async (req, res)=>{
         const myData = await dataModel.find();
         res.status(200).json({
             message: "Data",
+            total:myData.length,
             data: myData
         })
     }catch(error){
@@ -68,6 +69,9 @@ exports.getOne = async (req, res)=>{
     try{
         const id = req.params.id;
         const post = await dataModel.findOne({postId: id})
+        if(!post){
+            return res.status(404).send({ message: `Post with id: ${id} is not found.`,})
+        }
         res.status(200).json({
             message: `Post with id: ${id} is found.`,
             data: post
