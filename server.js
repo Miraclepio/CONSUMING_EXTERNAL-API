@@ -18,6 +18,9 @@ mongoose.connect(DB).then(()=>{
 }).catch((err)=>{
     console.log("error connecting to database: ", err.massage);
 });
+app.all('*',(res)=>{
+    return res.status(200).send('welcome to my homepage')
+})
 
 app.listen(PORT,() => {
     console.log(`server is listening to PORT:${PORT}`) 
